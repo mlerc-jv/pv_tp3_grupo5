@@ -1,0 +1,20 @@
+.nav{
+    background-color:#f8bbd0;
+    padding:15px;
+}
+.nav-lista{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    list-style:none;
+}
+.nav-lista a{
+    text-decoration:none;
+    color:#880e4f;
+    font-size:18px;
+    font-weight:bold;
+    transition:0.3s;
+}
+.nav-lista a:hover{
+    color:#c2185b;
+}
