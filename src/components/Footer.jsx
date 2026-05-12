@@ -1,4 +1,4 @@
-function Footer() {
+ const Footer = () => {
   return (
     <footer>
       <p>
@@ -17,6 +17,6 @@ function Footer() {
       </p>
     </footer>
   );
-}
+};
 
 export default Footer;
