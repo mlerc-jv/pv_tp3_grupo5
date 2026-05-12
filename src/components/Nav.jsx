@@ -8,8 +8,8 @@ const Nav = () => {
 
                 <li><a href="#">Inicio</a></li>
                 <li><a href="#">Proyectos</a></li>
-                <li><a href="#">Categorias</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li><a href="#">Perfil</a></li>
+                <li><a href="#">Tareas</a></li>
             </ul>
         </nav>
     );
