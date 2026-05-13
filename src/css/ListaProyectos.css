@@ -39,3 +39,21 @@
     border-radius: 6px;
     cursor: pointer;
 }
+
+.formulario {
+    margin-bottom: 30px;
+}
+
+.formulario input {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 6px;
+    border: none;
+}
+
+.formulario button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
