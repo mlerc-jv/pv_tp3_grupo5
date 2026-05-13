@@ -1,0 +1,20 @@
+.header {
+    background-color: #f8bbd0;
+    padding: 50px 20px;
+    text-align: center;
+
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+}
+
+.texto h1 {
+    color: #880e4f;
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.texto p {
+    color: #5a2340;
+    font-size: 18px;
+    line-height: 1.8;
+}
