@@ -1,0 +1,59 @@
+.lista-proyectos {
+    text-align: center;
+    padding: 30px;
+}
+
+.lista-proyectos h2 {
+    margin-bottom: 20px;
+}
+
+.buscador {
+    width: 260px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 30px;
+}
+
+.card-proyecto {
+    background-color: #1e1e2f;
+    border-radius: 12px;
+    padding: 20px;
+    width: 350px;
+    margin: 20px auto;
+    border: 1px solid #444;
+}
+
+.card-proyecto h3 {
+    margin-bottom: 15px;
+}
+
+.card-proyecto p {
+    margin: 8px 0;
+}
+
+.card-proyecto button {
+    margin-top: 15px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.formulario {
+    margin-bottom: 30px;
+}
+
+.formulario input {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 6px;
+    border: none;
+}
+
+.formulario button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
