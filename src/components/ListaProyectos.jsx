@@ -2,43 +2,17 @@ import "../css/ListaProyectos.css";
 import { useState } from "react";
 import proyectoService from "../services/proyectoService";
 
-const ListaProyectos = () => {
+import ProyectoCard from "./ProyectoCard";
+import FormProyecto from "./FormProyecto";
+import DetalleProyecto from "./DetalleProyecto";
+
+const ListaProyectos=() => {
 
     const [proyectos, setProyectos] = useState(
         proyectoService.obtenerProyectos()
     );
 
-    const [nuevoTitulo, setNuevoTitulo] = useState("");
-    const [nuevaCategoria, setNuevaCategoria] = useState("");
-    const [nuevoEstado, setNuevoEstado] = useState("");
-
-    const manejarAgregar = () => {
-
-        if (
-            nuevoTitulo === "" ||
-            nuevaCategoria === "" ||
-            nuevoEstado === ""
-        ) {
-            return;
-        }
-
-        const nuevoProyecto = {
-            id: Date.now(),
-            titulo: nuevoTitulo,
-            categoria: nuevaCategoria,
-            estado: nuevoEstado
-        };
-
-        proyectoService.agregarProyecto(nuevoProyecto);
-
-        setProyectos(
-            proyectoService.obtenerProyectos()
-        );
-
-        setNuevoTitulo("");
-        setNuevaCategoria("");
-        setNuevoEstado("");
-    };
+    const [proyectoSeleccionado, setProyectoSeleccionado]=useState(null);
 
     const manejarEliminar = (id) => {
 
@@ -60,52 +34,37 @@ const ListaProyectos = () => {
             );
 
         } else {
-
             setProyectos(
                 proyectoService.buscarProyecto(texto)
             );
         }
     };
 
-    return (
+    const manejarVerDetalle = (proyecto) => {
+
+        setProyectoSeleccionado(proyecto);
+    };
+
+    const cerrarDetalle = () => {
+
+        setProyectoSeleccionado(null);
+    };
+
+    const agregarProyecto = (nuevoProyecto) => {
+
+        proyectoService.agregarProyecto(nuevoProyecto);
+
+        setProyectos(
+            proyectoService.obtenerProyectos()
+        );
+    };
+    return(
+
         <main className="lista-proyectos">
 
             <h2>Lista de Proyectos</h2>
 
-            <div className="formulario">
-
-                <input
-                    type="text"
-                    placeholder="Título"
-                    value={nuevoTitulo}
-                    onChange={(e) =>
-                        setNuevoTitulo(e.target.value)
-                    }
-                />
-
-                <input
-                    type="text"
-                    placeholder="Categoría"
-                    value={nuevaCategoria}
-                    onChange={(e) =>
-                        setNuevaCategoria(e.target.value)
-                    }
-                />
-
-                <input
-                    type="text"
-                    placeholder="Estado"
-                    value={nuevoEstado}
-                    onChange={(e) =>
-                        setNuevoEstado(e.target.value)
-                    }
-                />
-
-                <button onClick={manejarAgregar}>
-                    Agregar Proyecto
-                </button>
-
-            </div>
+            <FormProyecto agregarProyecto={agregarProyecto} />
 
             <input
                 className="buscador"
@@ -113,38 +72,26 @@ const ListaProyectos = () => {
                 placeholder="Buscar proyecto..."
                 onChange={manejarBuscar}
             />
-
             {
                 proyectos.map((proyecto) => (
-                    <div
+                    <ProyectoCard
                         key={proyecto.id}
-                        className="card-proyecto"
-                    >
+                        proyecto={proyecto}
+                        eliminarProyecto={manejarEliminar}
+                        verDetalle={manejarVerDetalle}
+                    />
 
-                        <h3>{proyecto.titulo}</h3>
-
-                        <p>
-                            Categoría: {proyecto.categoria}
-                        </p>
-
-                        <p>
-                            Estado: {proyecto.estado}
-                        </p>
-
-                        <button
-                            onClick={() =>
-                                manejarEliminar(proyecto.id)
-                            }
-                        >
-                            Eliminar
-                        </button>
-
-                        <hr />
-
-                    </div>
                 ))
             }
+            {
+                proyectoSeleccionado && (
+                    <DetalleProyecto
+                        proyecto={proyectoSeleccionado}
+                        cerrarDetalle={cerrarDetalle}
+                    />
 
+                )
+            }
         </main>
     );
 };
