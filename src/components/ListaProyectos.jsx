@@ -9,7 +9,7 @@ import DetalleProyecto from "./DetalleProyecto";
 const ListaProyectos=() => {
 
     const [proyectos, setProyectos] = useState(
-        proyectoService.obtenerProyectos()
+        proyectoService.obtenerProyectosDisponibles()
     );
 
     const [proyectoSeleccionado, setProyectoSeleccionado]=useState(null);
@@ -19,7 +19,7 @@ const ListaProyectos=() => {
         proyectoService.eliminarProyecto(id);
 
         setProyectos(
-            proyectoService.obtenerProyectos()
+            proyectoService.obtenerProyectosDisponibles()
         );
     };
 
@@ -30,7 +30,7 @@ const ListaProyectos=() => {
         if (texto === "") {
 
             setProyectos(
-                proyectoService.obtenerProyectos()
+                proyectoService.obtenerProyectosDisponibles()
             );
 
         } else {
@@ -55,7 +55,7 @@ const ListaProyectos=() => {
         proyectoService.agregarProyecto(nuevoProyecto);
 
         setProyectos(
-            proyectoService.obtenerProyectos()
+            proyectoService.obtenerProyectosDisponibles()
         );
     };
     return(
