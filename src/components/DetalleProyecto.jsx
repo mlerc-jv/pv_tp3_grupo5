@@ -1,3 +1,4 @@
+import "../css/DetalleProyecto.css"
 const DetalleProyecto = ({ proyecto, cerrarDetalle }) => {
 
     if (!proyecto) {
@@ -15,58 +16,35 @@ const DetalleProyecto = ({ proyecto, cerrarDetalle }) => {
 
         <div>
 
-            <h2>{titulo}</h2>
+         <h2>{titulo}</h2>
+         {descripcion.map((p, i) => (
+            <p key={i}>{p}</p>
+        ))}
 
-            <p>{descripcion}</p>
+         <h3>Recursos</h3>
+         <ul>
+            {recursos?.pdf && (
+             <li>PDF: {recursos.pdf}</li>
+             )}
 
-            <p>
-                Este proyecto fue desarrollado utilizando herramientas modernas
-                y trabajo colaborativo en equipo.
-            </p>
+            {recursos?.drive && (
+             <li>Drive: {recursos.drive}</li>
+             )}
 
-            <h3>Recursos</h3>
+            {recursos?.github && (
+              <li>GitHub: {recursos.github}</li>
+             )}
+         </ul>
 
-            <ul>
-
-                <li>
-                    <a href={recursos.pdf}>
-                        PDF
-                    </a>
-                </li>
-
-                <li>
-                    <a href={recursos.drive}>
-                        Drive
-                    </a>
-                </li>
-
-                <li>
-                    <a href={recursos.github}>
-                        GitHub
-                    </a>
-                </li>
-
-            </ul>
-
-            <h3>Equipo</h3>
-
-            <ul>
-
-                {
-                    equipo.map((persona, index) => (
-
-                        <li key={index}>
-                            {persona.nombre} - {persona.rol}
-                        </li>
-
-                    ))
-                }
-
-            </ul>
-
-            <button onClick={cerrarDetalle}>
-                Cerrar
-            </button>
+        <h3>Equipo</h3>
+         <ul>
+           {equipo.map((m, i) => (
+            <li key={i}>{m.nombre} - {m.rol}</li>
+           ))}
+        </ul>
+        <button onClick={cerrarDetalle}>
+            Cerrar
+        </button>
 
         </div>
 
