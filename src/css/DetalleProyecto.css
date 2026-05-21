@@ -1,44 +1,42 @@
-div{
-    background-color: white;
+.detalle-proyecto {
+    background-color: #fff5f8;
     width: 70%;
+    max-width: 700px;
     margin: 30px auto;
     padding: 30px;
     border-radius: 20px;
     border: 2px solid #f8bbd0;
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.15);
+    box-shadow: 0px 6px 18px rgba(0,0,0,0.15);
+    text-align: left;
 }
-
-h2{
+.detalle-proyecto h2 {
     color: #880e4f;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
-h3{
+.detalle-proyecto h3 {
     color: #c2185b;
     margin-top: 20px;
     margin-bottom: 10px;
 }
-
-p{
+.detalle-proyecto p {
     color: #5a2340;
-    margin-bottom: 12px;
     line-height: 1.6;
+    margin-bottom: 10px;
 }
-
-ul{
+.detalle-proyecto ul {
     list-style: none;
     padding: 0;
 }
-
-li{
-    background-color: #fff5f8;
-    margin-bottom: 10px;
+.detalle-proyecto li {
+    background-color: white;
+    margin-bottom: 8px;
     padding: 10px;
     border-radius: 10px;
     color: #5a2340;
+    border: 1px solid #f8bbd0;
 }
-
-button{
+.detalle-proyecto button {
     margin-top: 20px;
     background-color: #880e4f;
     color: white;
@@ -48,7 +46,7 @@ button{
     cursor: pointer;
     transition: 0.3s;
 }
-
-button:hover{
+.detalle-proyecto button:hover {
     background-color: #c2185b;
+    transform: scale(1.05);
 }
