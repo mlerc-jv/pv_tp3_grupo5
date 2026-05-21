@@ -1,4 +1,5 @@
-import { useState } from "react";
+import "../css/FormProyecto.css"
+ import { useState } from "react";
 
 const FormProyecto = ({ agregarProyecto }) => {
 
@@ -7,8 +8,7 @@ const FormProyecto = ({ agregarProyecto }) => {
         categoria: "",
         estado: "",
         descripcion: "",
-        recursos: "",
-        equipo: ""
+       
     });
 
     const manejarCambio = (e) => {
@@ -21,26 +21,25 @@ const FormProyecto = ({ agregarProyecto }) => {
         });
     };
 
-    const manejarSubmit = (e) => {
+const manejarSubmit = (e) => {
+  e.preventDefault();
 
-        e.preventDefault();
+  const nuevoProyecto = {
+    titulo: formulario.titulo,
+    categoria: formulario.categoria,
+    estado: formulario.estado,
+    descripcion: formulario.descripcion
+};
 
-        const nuevoProyecto = {
-            id: Date.now(),
-            ...formulario
-        };
-
-        agregarProyecto(nuevoProyecto);
-
-        setFormulario({
-            titulo: "",
-            categoria: "",
-            estado: "",
-            descripcion: "",
-            recursos: "",
-            equipo: ""
-        });
-    };
+  agregarProyecto(nuevoProyecto);
+  setFormulario({
+    titulo: "",
+    categoria: "",
+    estado: "",
+    descripcion: "",
+  
+  });
+};
 
     return (
         <form className="formulario" onSubmit={manejarSubmit}>
@@ -51,6 +50,7 @@ const FormProyecto = ({ agregarProyecto }) => {
                 placeholder="Título"
                 value={formulario.titulo}
                 onChange={manejarCambio}
+                required
             />
 
             <input
@@ -59,6 +59,7 @@ const FormProyecto = ({ agregarProyecto }) => {
                 placeholder="Categoría"
                 value={formulario.categoria}
                 onChange={manejarCambio}
+                required
             />
 
             <input
@@ -67,6 +68,7 @@ const FormProyecto = ({ agregarProyecto }) => {
                 placeholder="Estado"
                 value={formulario.estado}
                 onChange={manejarCambio}
+                required
             />
 
             <textarea
@@ -76,21 +78,6 @@ const FormProyecto = ({ agregarProyecto }) => {
                 onChange={manejarCambio}
             />
 
-            <input
-                type="text"
-                name="recursos"
-                placeholder="Recursos"
-                value={formulario.recursos}
-                onChange={manejarCambio}
-            />
-
-            <input
-                type="text"
-                name="equipo"
-                placeholder="Equipo"
-                value={formulario.equipo}
-                onChange={manejarCambio}
-            />
 
             <button type="submit">
                 Agregar Proyecto
