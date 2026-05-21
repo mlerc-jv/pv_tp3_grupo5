@@ -14,7 +14,7 @@ const DetalleProyecto = ({ proyecto, cerrarDetalle }) => {
 
     return (
 
-        <div>
+        <div className="detalle-proyecto">
 
          <h2>{titulo}</h2>
          {descripcion.map((p, i) => (
