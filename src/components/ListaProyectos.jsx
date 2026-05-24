@@ -1,48 +1,75 @@
-import "../css/ListaProyectos.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 import proyectoService from "../services/proyectoService";
 
 import ProyectoCard from "./ProyectoCard";
 import FormProyecto from "./FormProyecto";
 import DetalleProyecto from "./DetalleProyecto";
 
-const ListaProyectos=() => {
+const ListaProyectos = () => {
 
-    const [proyectos, setProyectos] = useState(
-        proyectoService.obtenerProyectosDisponibles()
-    );
+    const [proyectos, setProyectos] = useState(() => {
 
-    const [proyectoSeleccionado, setProyectoSeleccionado]=useState(null);
+        const proyectosGuardados = localStorage.getItem("proyectos");
 
-    const manejarEliminar = (id) => {
+        return proyectosGuardados
+            ? JSON.parse(proyectosGuardados)
+            : proyectoService.obtenerProyectosDisponibles();
+    });
+
+    const [busqueda, setBusqueda] = useState("");
+
+    const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
+
+    useEffect(() => {
+
+        localStorage.setItem(
+            "proyectos",
+            JSON.stringify(proyectos)
+        );
+
+    }, [proyectos]);
+
+    const agregarProyecto = (nuevoProyecto) => {
+
+        proyectoService.agregarProyecto(nuevoProyecto);
+
+        const proyectosActualizados =
+            proyectoService.obtenerProyectosDisponibles();
+
+        setProyectos(proyectosActualizados);
+    };
+
+    const eliminarProyecto = (id) => {
 
         proyectoService.eliminarProyecto(id);
 
-        setProyectos(
-            proyectoService.obtenerProyectosDisponibles()
-        );
-    };
+        const proyectosActualizados =
+            proyectoService.obtenerProyectosDisponibles();
 
-    const manejarBuscar = (e) => {
+        setProyectos(proyectosActualizados);
 
-        const texto = e.target.value;
-
-        if (texto === "") {
-
-            setProyectos(
-                proyectoService.obtenerProyectosDisponibles()
-            );
-
-        } else {
-            setProyectos(
-                proyectoService.buscarProyecto(texto)
-            );
+        if (
+            proyectoSeleccionado &&
+            proyectoSeleccionado.id === id
+        ) {
+            setProyectoSeleccionado(null);
         }
     };
 
-    const manejarVerDetalle = (proyecto) => {
+    const verDetalle = (proyecto) => {
 
-        setProyectoSeleccionado(proyecto);
+        if (
+            proyectoSeleccionado &&
+            proyectoSeleccionado.id === proyecto.id
+        ) {
+
+            setProyectoSeleccionado(null);
+
+        } else {
+
+            setProyectoSeleccionado(proyecto);
+        }
     };
 
     const cerrarDetalle = () => {
@@ -50,49 +77,87 @@ const ListaProyectos=() => {
         setProyectoSeleccionado(null);
     };
 
-    const agregarProyecto = (nuevoProyecto) => {
+    const manejarBusqueda = (e) => {
 
-        proyectoService.agregarProyecto(nuevoProyecto);
+        const texto = e.target.value;
 
-        setProyectos(
-            proyectoService.obtenerProyectosDisponibles()
-        );
+        setBusqueda(texto);
+
+        if (texto.trim() === "") {
+
+            setProyectos(
+                proyectoService.obtenerProyectosDisponibles()
+            );
+
+        } else {
+
+            const resultados =
+                proyectoService.buscarProyecto(texto);
+
+            setProyectos(resultados);
+        }
     };
-    return(
 
-        <main className="lista-proyectos">
+    return (
 
-            <h2>Lista de Proyectos</h2>
+        <section className="panel-trabajo">
 
-            <FormProyecto agregarProyecto={agregarProyecto} />
-
-            <input
-                className="buscador"
-                type="text"
-                placeholder="Buscar proyecto..."
-                onChange={manejarBuscar}
+            <FormProyecto
+                agregarProyecto={agregarProyecto}
             />
-            {
-                proyectos.map((proyecto) => (
-                    <ProyectoCard
-                        key={proyecto.id}
-                        proyecto={proyecto}
-                        eliminarProyecto={manejarEliminar}
-                        verDetalle={manejarVerDetalle}
+
+            <div className="encabezado-lista">
+
+                <h2>Lista de proyectos</h2>
+
+                <div className="busqueda">
+
+                    <label>Buscar por título</label>
+
+                    <input
+                        type="text"
+                        placeholder="Ej: biblioteca"
+                        value={busqueda}
+                        onChange={manejarBusqueda}
                     />
 
-                ))
-            }
-            {
-                proyectoSeleccionado && (
-                    <DetalleProyecto
-                        proyecto={proyectoSeleccionado}
-                        cerrarDetalle={cerrarDetalle}
-                    />
+                </div>
 
-                )
-            }
-        </main>
+            </div>
+
+            <div className="lista-proyectos">
+
+                {
+                    proyectos.map((proyecto) => (
+
+                        <div key={proyecto.id}>
+
+                            <ProyectoCard
+                                proyecto={proyecto}
+                                eliminarProyecto={eliminarProyecto}
+                                verDetalle={verDetalle}
+                            />
+
+                            {
+                                proyectoSeleccionado &&
+                                proyectoSeleccionado.id === proyecto.id && (
+
+                                    <DetalleProyecto
+                                        proyecto={proyectoSeleccionado}
+                                        cerrarDetalle={cerrarDetalle}
+                                    />
+
+                                )
+                            }
+
+                        </div>
+
+                    ))
+                }
+
+            </div>
+
+        </section>
     );
 };
 
