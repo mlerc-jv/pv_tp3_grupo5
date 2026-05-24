@@ -20,6 +20,7 @@ const FormProyecto = ({ agregarProyecto }) => {
                 rol: ""
             }
         ]
+       
     });
 
     const manejarCambio = (e) => {
