@@ -85,7 +85,7 @@ const proyectoService = (() => {
             id: 5,
             titulo: "TP3 Parte 2 - Gestión de Proyectos Educativos",
             categoria: "React",
-            estado: "En progreso",
+            estado: "Activo",
             disponible: true,
             descripcion: [
                 "Este proyecto corresponde a la segunda parte del TP3, donde se trabaja con React, componentes, props y desestructuración de objetos.",
@@ -123,28 +123,11 @@ const proyectoService = (() => {
             id: Date.now(),
             disponible: true,
 
-            descripcion: p.descripcion
-                ? [
-                    p.descripcion,
-                    "Este proyecto fue agregado desde el formulario y puede ampliarse con más información sobre sus objetivos, recursos y equipo de trabajo."
-                ]
-                : [
-                    "Sin descripción",
-                    "Agregar información del proyecto."
-                ],
+            descripcion: p.descripcion,
 
-            recursos: p.recursos ? p.recursos : {
-                pdf: "Sin PDF",
-                drive: "Sin Drive",
-                github: "Sin GitHub"
-            },
+            recursos: p.recursos,
 
-            equipo: p.equipo ? p.equipo : [
-                {
-                    nombre: "Sin integrantes",
-                    rol: "Sin rol"
-                }
-            ]
+            equipo: p.equipo
         };
 
         proyectos.push(nuevoProyecto);
