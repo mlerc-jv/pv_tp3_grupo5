@@ -51,7 +51,9 @@ const ListaProyectos = () => {
 
         const anio = fecha.getFullYear();
 
-        const hora = fecha.getHours();
+        const hora = fecha.getHours()
+             .toString()
+             .padStart(2,"0");
 
         const minutos = fecha.getMinutes()
             .toString()

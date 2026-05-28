@@ -1,0 +1,12 @@
+.registro-actividad{
+    padding:12px 20px;
+    background-color: #fff0f5;
+    border:2px solid #f8bbd0;
+    border-radius: 15px;
+    text-align: center;
+    width:fit-content;
+    margin:20px auto 30px auto;
+    color:#ec407a;
+    font-size: 20px;
+    box-shadow: 0px 4px 10px rbga(0,0,0,0,0.10);
+}
