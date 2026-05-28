@@ -114,7 +114,10 @@ const FormProyecto = ({ agregarProyecto }) => {
             className="formulario"
             onSubmit={manejarSubmit}
         >
-
+        <h2>FORMULARIO</h2>
+        <div className="fila-principal">
+            <div className="campo">
+            <label>Ingresar titulo</label>
             <input
                 type="text"
                 name="titulo"
@@ -123,7 +126,9 @@ const FormProyecto = ({ agregarProyecto }) => {
                 onChange={manejarCambio}
                 required
             />
-
+            </div>
+            <div className="campo">
+            <label>Ingresar categoria</label>
             <input
                 type="text"
                 name="categoria"
@@ -132,7 +137,10 @@ const FormProyecto = ({ agregarProyecto }) => {
                 onChange={manejarCambio}
                 required
             />
+            </div>
 
+            <div className="campo">
+            <label>Seleccionar Estado</label>
             <select
                 name="estado"
                 value={formulario.estado}
@@ -141,7 +149,7 @@ const FormProyecto = ({ agregarProyecto }) => {
             >
 
                 <option value="">
-                    Seleccionar estado
+                    Estado
                 </option>
 
                 <option value="Activo">
@@ -155,9 +163,10 @@ const FormProyecto = ({ agregarProyecto }) => {
                 <option value="Finalizado">
                     Finalizado
                 </option>
-
             </select>
-
+            </div>
+        </div>
+            <label>Agregar Descripcion</label>
             <textarea
                 name="descripcion"
                 placeholder="Descripción párrafo 1"
@@ -173,9 +182,9 @@ const FormProyecto = ({ agregarProyecto }) => {
                 onChange={manejarCambio}
                 required
             />
-
-            <h3>Recursos</h3>
-
+            
+            <label>Ingresar recursos</label>
+            <div className="fila-recursos">
             <input
                 type="text"
                 name="pdf"
@@ -199,13 +208,21 @@ const FormProyecto = ({ agregarProyecto }) => {
                 value={formulario.recursos.github}
                 onChange={manejarRecursos}
             />
+            </div>
+            <div className="seccion-integrante">
 
-            <h3>Equipo</h3>
-
+            <label>Registrar Integrantes</label>
+             <button
+                type="button"
+                onClick={agregarIntegrante}
+            >
+                Agregar integrante
+            </button>
+            </div>
             {
                 formulario.equipo.map((integrante, index) => (
-
-                    <div key={index}>
+                
+                    <div className="integrante" key={index}>
 
                         <input
                             type="text"
@@ -233,14 +250,6 @@ const FormProyecto = ({ agregarProyecto }) => {
 
                 ))
             }
-
-            <button
-                type="button"
-                onClick={agregarIntegrante}
-            >
-                Agregar integrante
-            </button>
-
             <button type="submit">
                 Agregar Proyecto
             </button>

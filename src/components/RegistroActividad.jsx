@@ -1,8 +1,9 @@
+import "../css/RegistroActividad.css"
 const RegistroActividad = ({ fechaHora }) => {
 
     return (
 
-        <div>
+        <div className="registro-actividad">
 
             <p>
                 Última actualización de la lista:
