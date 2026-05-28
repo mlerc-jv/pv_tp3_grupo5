@@ -41,9 +41,13 @@ const ListaProyectos = () => {
 
         const fecha = new Date();
 
-        const dia = fecha.getDate();
+        const dia = fecha.getDate()
+             .toString()
+             .padStart(2, "0");
 
-        const mes = fecha.getMonth() + 1;
+        const mes = (fecha.getMonth() + 1)
+             .toString()
+             .padStart(2, "0");
 
         const anio = fecha.getFullYear();
 
@@ -109,24 +113,16 @@ const ListaProyectos = () => {
 
     const manejarBusqueda = (e) => {
 
-        const texto = e.target.value;
-
-        setBusqueda(texto);
-
-        if (texto.trim() === "") {
-
-            setProyectos(
-                proyectoService.obtenerProyectosDisponibles()
-            );
-
-        } else {
-
-            const resultados =
-                proyectoService.buscarProyecto(texto);
-
-            setProyectos(resultados);
-        }
+      setBusqueda(e.target.value);
     };
+
+    const proyectosFiltrados = busqueda.trim() === ""
+    ? proyectos
+    : proyectos.filter((proyecto) =>
+        proyecto.titulo
+            .toLowerCase()
+            .includes(busqueda.toLowerCase())
+    );
 
     return (
 
@@ -158,7 +154,7 @@ const ListaProyectos = () => {
             <div className="lista-proyectos">
 
                 {
-                    proyectos.map((proyecto) => (
+                    proyectosFiltrados.map((proyecto) => (
 
                         <div key={proyecto.id}>
 
