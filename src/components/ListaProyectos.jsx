@@ -39,9 +39,24 @@ const ListaProyectos = () => {
             return;
         }
 
-        setFechaHora(
-            new Date().toLocaleString()
-        );
+        const fecha = new Date();
+
+        const dia = fecha.getDate();
+
+        const mes = fecha.getMonth() + 1;
+
+        const anio = fecha.getFullYear();
+
+        const hora = fecha.getHours();
+
+        const minutos = fecha.getMinutes()
+            .toString()
+            .padStart(2, "0");
+
+        const mensaje =
+            `${dia}/${mes}/${anio} a las ${hora}:${minutos} hs.`;
+
+        setFechaHora(mensaje);
 
     }, [proyectos]);
 
