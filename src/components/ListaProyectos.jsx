@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import proyectoService from "../services/proyectoService";
 
 import ProyectoCard from "./ProyectoCard";
 import FormProyecto from "./FormProyecto";
 import DetalleProyecto from "./DetalleProyecto";
+import RegistroActividad from "./RegistroActividad";
 
 const ListaProyectos = () => {
 
@@ -21,11 +22,25 @@ const ListaProyectos = () => {
 
     const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
 
+    const [fechaHora, setFechaHora] = useState("");
+
+    const primeraCarga = useRef(true);
+
     useEffect(() => {
 
         localStorage.setItem(
             "proyectos",
             JSON.stringify(proyectos)
+        );
+
+        if (primeraCarga.current) {
+
+            primeraCarga.current = false;
+            return;
+        }
+
+        setFechaHora(
+            new Date().toLocaleString()
         );
 
     }, [proyectos]);
@@ -156,6 +171,16 @@ const ListaProyectos = () => {
                 }
 
             </div>
+
+            {
+                fechaHora !== "" && (
+
+                    <RegistroActividad
+                        fechaHora={fechaHora}
+                    />
+
+                )
+            }
 
         </section>
     );
