@@ -1,20 +1,17 @@
 .header {
-    background-color: #f8bbd0;
-    padding: 50px 20px;
+    background: #f48fb1;
+    color: white;
     text-align: center;
-
+    padding: 60px 20px;
     width: 100vw;
     margin-left: calc(-50vw + 50%);
 }
 
 .texto h1 {
-    color: #880e4f;
-    font-size: 42px;
-    margin-bottom: 20px;
+    font-size: 52px;
+    font-weight: 800;
 }
 
 .texto p {
-    color: #5a2340;
-    font-size: 18px;
-    line-height: 1.8;
+    font-size: 20px;
 }
