@@ -1,3 +1,4 @@
+import "../css/ListaProyectos.css"
 import { useEffect, useState, useRef } from "react";
 
 import proyectoService from "../services/proyectoService";
@@ -136,7 +137,7 @@ const ListaProyectos = () => {
 
             <div className="encabezado-lista">
 
-                <h2>Lista de proyectos</h2>
+                <h2>LISTA DE PROYECTOS</h2>
 
                 <div className="busqueda">
 
@@ -155,35 +156,23 @@ const ListaProyectos = () => {
 
             <div className="lista-proyectos">
 
-                {
-                    proyectosFiltrados.map((proyecto) => (
-
+                    {proyectosFiltrados.map((proyecto) => (
                         <div key={proyecto.id}>
-
-                            <ProyectoCard
-                                proyecto={proyecto}
-                                eliminarProyecto={eliminarProyecto}
-                                verDetalle={verDetalle}
-                            />
-
-                            {
-                                proyectoSeleccionado &&
-                                proyectoSeleccionado.id === proyecto.id && (
-
-                                    <DetalleProyecto
-                                        proyecto={proyectoSeleccionado}
-                                        cerrarDetalle={cerrarDetalle}
-                                    />
-
-                                )
-                            }
-
+                         <ProyectoCard
+                            proyecto={proyecto}
+                            eliminarProyecto={eliminarProyecto}
+                            verDetalle={verDetalle}
+                         />
                         </div>
-
-                    ))
-                }
-
+                    ))}
             </div>
+            {
+             proyectoSeleccionado && (
+              <DetalleProyecto
+                proyecto={proyectoSeleccionado}
+                cerrarDetalle={cerrarDetalle}
+              />
+            )}
 
             {
                 fechaHora !== "" && (

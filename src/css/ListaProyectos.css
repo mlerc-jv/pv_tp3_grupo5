@@ -1,68 +1,50 @@
 .lista-proyectos {
     background-color: #fff5f8;
-    padding: 50px 20px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    justify-items: center;
+    gap: 20px;
 }
 
-.lista-proyectos h2 {
-    color: #880e4f;
-    margin-bottom: 40px;
-    font-size: 38px;
+.encabezado-lista h2 {
+    color:#ec407a;
+    font-size:25px;
+    font-weight: 800;
+    margin-bottom: 10px;
 }
-
-.formulario {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
+.busqueda {
+    padding: 12px;
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid #f8bbd0;
     margin-bottom: 30px;
-}
-
-.formulario input {
-    padding: 12px;
-    border: 2px solid #f8bbd0;
-    border-radius: 10px;
-    width: 200px;
     font-size: 16px;
+    text-align: center;
 }
-
-.formulario button {
-    background-color: #880e4f;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 12px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: 0.3s;
+.busqueda label{
+    display: block;
+    margin-bottom: 10px;
+    color:#f48fb1;
+    font-weight: bold;
 }
-
-.formulario button:hover {
-    background-color: #c2185b;
-}
-
-.buscador {
-    padding: 12px;
+.busqueda input{
+    background-color: white;
     width: 300px;
+    padding:12px;
     border-radius: 10px;
-    border: 2px solid #f8bbd0;
-    margin-bottom: 40px;
+    border:2px solid #f8bbd0;
     font-size: 16px;
 }
-
 .proyecto-card {
     background-color: #fff5f8;
-    width: 320px;
-    margin: 20px auto;
-    padding: 25px;
+    width: 250px;
+    padding: 20px;
     border-radius: 20px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
     transition: 0.3s;
     border: 2px solid #f8bbd0;
+    margin: 0; 
 }
 
 .proyecto-card:hover {
@@ -70,8 +52,9 @@
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
 }
 
+
 .info-card h3 {
-    color: #880e4f;
+    color: #ec407a;
     margin-bottom: 15px;
 }
 
@@ -79,6 +62,7 @@
     color: #5a2340;
     margin-bottom: 10px;
 }
+
 
 .botones {
     display: flex;
