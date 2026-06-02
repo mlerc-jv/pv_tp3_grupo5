@@ -3,10 +3,10 @@ import { useEffect, useState, useRef } from "react";
 
 import proyectoService from "../services/proyectoService";
 
-import ProyectoCard from "./ProyectoCard";
-import FormProyecto from "./FormProyecto";
+import ProyectoCard from "../components/ProyectoCard";
+import FormProyecto from "../components/FormProyecto";
 import DetalleProyecto from "./DetalleProyecto";
-import RegistroActividad from "./RegistroActividad";
+import RegistroActividad from "../components/RegistroActividad";
 
 const ListaProyectos = () => {
 
