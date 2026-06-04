@@ -1,9 +1,21 @@
-import "../css/DetalleProyecto.css"
-const DetalleProyecto = ({ proyecto, cerrarDetalle }) => {
+import "../css/DetalleProyecto.css";
+import { useParams } from "react-router-dom";
+import proyectoService from "../services/proyectoService";
 
-    if (!proyecto) {
-        return null;
-    }
+const DetalleProyecto = () => {
+
+    const { id } = useParams();
+
+    const proyecto =
+        proyectoService.obtenerProyectoPorId(Number(id));
+
+        if (!proyecto) {
+            return (
+                <div className="detalle-proyecto">
+                    <h2>Proyecto no encontrado</h2>
+                </div>
+            );
+        }
 
     const {
         titulo,
@@ -42,9 +54,7 @@ const DetalleProyecto = ({ proyecto, cerrarDetalle }) => {
             <li key={i}>{m.nombre} - {m.rol}</li>
            ))}
         </ul>
-        <button onClick={cerrarDetalle}>
-            Cerrar
-        </button>
+        
 
         </div>
 
