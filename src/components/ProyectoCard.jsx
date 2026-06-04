@@ -1,22 +1,59 @@
 import "../css/ProyectoCard.css";
-const ProyectoCard = ({proyecto, eliminarProyecto, verDetalle}) =>{
-    const {id, titulo, categoria, estado}=proyecto;
+
+import {
+    Card,
+    CardContent,
+    CardActions,
+    Typography,
+    Button
+} from "@mui/material";
+
+const ProyectoCard = ({ proyecto, eliminarProyecto, verDetalle }) => {
+
+    const { id, titulo, categoria, estado } = proyecto;
+
     return (
-        <article className="proyecto-card">
-            <div className="info-card">
-            <h3>{titulo}</h3>
-            <p>{categoria}</p>
-            <p>{estado}</p>
-            </div>
-            <div className="botones">
-                <button onClick={()=> eliminarProyecto(id)}>
+
+        <Card className="proyecto-card">
+
+            <CardContent>
+
+                <Typography variant="h5">
+                    {titulo}
+                </Typography>
+
+                <Typography variant="body1">
+                    Categoría: {categoria}
+                </Typography>
+
+                <Typography variant="body2">
+                    Estado: {estado}
+                </Typography>
+
+            </CardContent>
+
+            <CardActions>
+
+                <Button
+                    variant="contained"
+                    color="error"
+                    onClick={() => eliminarProyecto(id)}
+                >
                     Eliminar
-                </button>
-                <button onClick={()=> verDetalle(proyecto)}>
+                </Button>
+
+                <Button
+                    variant="outlined"
+                    onClick={() => verDetalle(proyecto)}
+                >
                     Ver Detalles
-                </button>
-            </div>
-        </article>
+                </Button>
+
+            </CardActions>
+
+        </Card>
+
     );
 };
+
 export default ProyectoCard;
