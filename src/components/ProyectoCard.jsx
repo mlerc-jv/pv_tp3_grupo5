@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../css/ProyectoCard.css";
 
 import {
@@ -44,7 +45,8 @@ const ProyectoCard = ({ proyecto, eliminarProyecto, verDetalle }) => {
 
                 <Button
                     variant="outlined"
-                    onClick={() => verDetalle(proyecto)}
+                    component={Link}
+                    to={`/proyectos/${id}`}
                 >
                     Ver Detalles
                 </Button>

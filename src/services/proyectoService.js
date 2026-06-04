@@ -151,12 +151,19 @@ const proyectoService = (() => {
         );
     };
 
+    const obtenerProyectoPorId = (id) => {
+        return obtenerProyectosDisponibles().find(
+            proyecto => proyecto.id === id
+        );
+    };
+
     return {
         obtenerProyectos,
         obtenerProyectosDisponibles,
         agregarProyecto,
         eliminarProyecto,
-        buscarProyecto
+        buscarProyecto,
+        obtenerProyectoPorId
     };
 
 })();
