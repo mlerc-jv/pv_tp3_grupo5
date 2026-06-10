@@ -6,11 +6,13 @@ import Dashboard from "./views/Dashboard";
 import ListaProyectos from "./views/ListaProyectos";
 import PerfilUsuario from "./views/PerfilUsuario";
 import DetalleProyecto from "./views/DetalleProyecto";
+import ErrorPage from "./views/ErrorPage";
+
+import RutaProtegida from "./routes/RutaProtegida";
 
 import { Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
-
     return (
         <>
             <Header />
@@ -18,7 +20,6 @@ function App() {
             <Nav />
 
             <main>
-
                 <Routes>
 
                     <Route
@@ -33,21 +34,37 @@ function App() {
 
                     <Route
                         path="/proyectos"
-                        element={<ListaProyectos />}
+                        element={
+                            <RutaProtegida>
+                                <ListaProyectos />
+                            </RutaProtegida>
+                        }
                     />
 
                     <Route
                         path="/proyectos/:id"
-                        element={<DetalleProyecto />}
+                        element={
+                            <RutaProtegida>
+                                <DetalleProyecto />
+                            </RutaProtegida>
+                        }
                     />
 
                     <Route
                         path="/perfil"
-                        element={<PerfilUsuario />}
+                        element={
+                            <RutaProtegida>
+                                <PerfilUsuario />
+                            </RutaProtegida>
+                        }
+                    />
+
+                    <Route
+                        path="/error"
+                        element={<ErrorPage />}
                     />
 
                 </Routes>
-
             </main>
 
             <Footer />
