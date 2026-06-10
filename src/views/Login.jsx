@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import autorizacionesService from "../services/autorizacionesService";
 
 import { useAutorizaciones } from "../hook/useAutorizaciones";
@@ -15,6 +17,8 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
 
     const { guardarSesion } = useAutorizaciones();
+
+    const navigate = useNavigate();
 
     const manejarSubmit = async (e) => {
 
@@ -46,7 +50,7 @@ const Login = () => {
 
             guardarSesion(usuario);
 
-            console.log(usuario);
+            navigate("/dashboard");
 
         } catch (err) {
 
