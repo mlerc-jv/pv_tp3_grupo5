@@ -7,8 +7,12 @@ import {
 } from "@mui/material";
 
 import proyectoService from "../services/proyectoService";
+import Login from "./Login";
+import { useAutorizaciones } from "../hook/useAutorizaciones";
 
 function Dashboard() {
+
+  const { usuarioActivo } = useAutorizaciones();
 
   const proyectos = proyectoService.obtenerProyectos();
 
@@ -81,7 +85,7 @@ function Dashboard() {
           </Card>
         </Grid>
 
-        <Grid size={{ xs: 12, md: 3 }}>
+                <Grid size={{ xs: 12, md: 3 }}>
           <Card>
             <CardContent>
               <Typography variant="h6">
@@ -96,6 +100,20 @@ function Dashboard() {
         </Grid>
 
       </Grid>
+
+      {
+        !usuarioActivo && (
+          <Grid container spacing={3} sx={{ mt: 3 }}>
+            <Grid size={{ xs: 12, md: 6 }}>
+              <Card>
+                <CardContent>
+                  <Login />
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+        )
+      }
     </Container>
   );
 }

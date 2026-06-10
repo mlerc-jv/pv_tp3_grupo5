@@ -1,3 +1,4 @@
+import Login from "./views/Login";
 import Header from "./components/Header";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
@@ -21,6 +22,11 @@ function App() {
 
             <main>
                 <Routes>
+
+                    <Route
+                       path="/login"
+                       element={<Login />}
+                    />
 
                     <Route
                         path="/"

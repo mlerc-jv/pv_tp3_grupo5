@@ -1,7 +1,11 @@
 import "../css/header.css";
+import { useAutorizaciones } from "../hook/useAutorizaciones";
 
-const Header =() => {
-    return(
+const Header = () => {
+
+    const { usuarioActivo, cerrarSesion } = useAutorizaciones();
+
+    return (
         <header className="header">
             <div className="texto">
                 <h1>Gestion de Proyectos Educativos</h1>
@@ -11,6 +15,19 @@ const Header =() => {
                 </p>            
             </div>
            
+           {
+              usuarioActivo && (
+                  <div className="usuario-header">
+                      <p>
+                          {usuarioActivo.nombre} - {usuarioActivo.rol}
+                      </p>
+
+                      <button onClick={cerrarSesion}>
+                          Cerrar sesión
+                      </button>
+                  </div>
+               )
+           }
         </header>
     );
 };
