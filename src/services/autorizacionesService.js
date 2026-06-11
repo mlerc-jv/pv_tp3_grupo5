@@ -1,16 +1,11 @@
 const usuarios = [
-    {
-        dni: "12345678",
-        password: "1234",
-        nombre: "Juan Pérez",
-        rol: "Alumno"
-    },
-    {
-        dni: "87654321",
-        password: "abcd",
-        nombre: "María Gómez",
-        rol: "Docente"
-    }
+    {dni: "12345678", password: "abcdefg", nombre: "Aramayo Lourdes", rol: "alumno", institucion: "Escuela de Minas"},
+    {dni: "23456789", password: "ghijklm", nombre: "Cabrera Maia", rol: "alumno", institucion: "Escuela de Minas"},
+    {dni: "48142585", password: "nopqrst", nombre: "Carrillo Abril", rol: "alumno", institucion: "Escuela de Minas"},
+    {dni: "48141988", password: "1234567", nombre: "Maidana Antonella", rol: "alumno", institucion: "Escuela de Minas"},
+    {dni: "48910310", password: "2345678", nombre: "Meruvia Jimena", rol: "alumno", institucion: "Escuela de Minas"},
+    {dni: "45678912", password: "3456789", nombre: "Quispe Guadalupe", rol: "alumno", institucion: "Escuela de Minas"}
+   
 ];
 
 const login = (dni, password) => {
