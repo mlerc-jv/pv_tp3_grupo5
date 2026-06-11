@@ -1,58 +1,136 @@
+import { useContext, useState } from "react";
+
 import {
-  Container,
-  Paper,
-  Typography,
-  List,
-  ListItem,
-  ListItemText,
+    Container,
+    Paper,
+    Typography,
+    TextField,
+    Button,
+    Stack
 } from "@mui/material";
 
+import { UsuarioContext } from "../context/UsuarioContext";
+
 const PerfilUsuario = () => {
-  const integrantes = [
-    {nombre: "Aramayo Lourdes",rol: "Estudiante",institucion: "Escuela de Minas"},
-    {nombre: "Cabrera Maia",rol: "Estudiante",institucion: "Escuela de Minas"},
-    {nombre: "Carrillo Abril",rol: "Estudiante",institucion: "Escuela de Minas"},
-    {nombre: "Maidana Antonella",rol: "Estudiante",institucion: "Escuela de Minas"},
-    {nombre: "Meruvia Jimena",rol: "Estudiante",institucion: "Escuela de Minas"},
-    {nombre: "Quispe Guadalupe",rol: "Estudiante",institucion: "Escuela de Minas"}
-  ];
 
-  return (
-    <Container maxWidth="md" sx={{ mt: 4 }}>
-      <Typography variant="h4" gutterBottom>
-        Perfil del Grupo
-      </Typography>
+    const { usuario, actualizarPerfil } =
+        useContext(UsuarioContext);
 
-      <Typography variant="body1" color="text.secondary" gutterBottom>
-        Integrantes del TP3
-      </Typography>
+    const [editando, setEditando] = useState(false);
 
-      {integrantes.map((integrante, index) => (
-        <Paper key={index} elevation={3}sx={{ p: 2, mb: 2 }}>
-          <List>
-            <ListItem>
-              <ListItemText
-                primary="Nombre"
-                secondary={integrante.nombre}
-              />
-            </ListItem>
-            <ListItem>
-              <ListItemText
-                primary="Rol"
-                secondary={integrante.rol}
-              />
-            </ListItem>
-            <ListItem>
-              <ListItemText
-                primary="Institucion"
-                secondary={integrante.institucion}
-              />
-            </ListItem>
-          </List>
-        </Paper>
-      ))}
-    </Container>
-  );
+    const [datos, setDatos] = useState(
+        usuario || {
+            nombre: "",
+            dni: "",
+            rol: "",
+            institucion: ""
+        }
+    );
+
+    const manejarCambio = (e) => {
+
+        const { name, value } = e.target;
+
+        setDatos({
+            ...datos,
+            [name]: value
+        });
+    };
+
+    const guardarCambios = () => {
+
+        actualizarPerfil(datos);
+
+        setEditando(false);
+    };
+
+    if (!usuario) {
+        return (
+            <Container sx={{ mt: 4 }}>
+                <Typography variant="h5">
+                    No hay usuario cargado
+                </Typography>
+            </Container>
+        );
+    }
+
+    return (
+        <Container maxWidth="sm" sx={{ mt: 4 }}>
+
+            <Paper elevation={3} sx={{ p: 3 }}>
+
+                <Typography
+                    variant="h4"
+                    gutterBottom
+                >
+                    Perfil de Usuario
+                </Typography>
+
+                <Stack spacing={2}>
+
+                    <TextField
+                        label="Nombre"
+                        name="nombre"
+                        value={datos.nombre}
+                        onChange={manejarCambio}
+                        disabled={!editando}
+                        fullWidth
+                    />
+
+                    <TextField
+                        label="DNI"
+                        name="dni"
+                        value={datos.dni}
+                        onChange={manejarCambio}
+                        disabled={!editando}
+                        fullWidth
+                    />
+
+                    <TextField
+                        label="Rol"
+                        name="rol"
+                        value={datos.rol}
+                        onChange={manejarCambio}
+                        disabled={!editando}
+                        fullWidth
+                    />
+
+                    <TextField
+                        label="Institución"
+                        name="institucion"
+                        value={datos.institucion}
+                        onChange={manejarCambio}
+                        disabled={!editando}
+                        fullWidth
+                    />
+
+                    {
+                        !editando ? (
+                            <Button
+                                variant="contained"
+                                onClick={() =>
+                                    setEditando(true)
+                                }
+                            >
+                                Editar Perfil
+                            </Button>
+                        ) : (
+                            <Button
+                                variant="contained"
+                                color="success"
+                                onClick={guardarCambios}
+                            >
+                                Guardar Cambios
+                            </Button>
+                        )
+                    }
+
+                </Stack>
+
+            </Paper>
+
+        </Container>
+    );
 };
 
 export default PerfilUsuario;
