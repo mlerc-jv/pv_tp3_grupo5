@@ -1,6 +1,6 @@
 const proyectoService = (() => {
 
-    let proyectos = [
+    const proyectosIniciales = [
         {
             id: 1,
             titulo: "Sistema Escolar",
@@ -107,6 +107,17 @@ const proyectoService = (() => {
         }
     ];
 
+    let proyectos =
+        JSON.parse(localStorage.getItem("proyectos"))
+        || proyectosIniciales;
+
+    const guardarEnLocalStorage = () => {
+        localStorage.setItem(
+            "proyectos",
+            JSON.stringify(proyectos)
+        );
+    };
+
     const obtenerProyectos = () => {
         return [...proyectos];
     };
@@ -131,6 +142,8 @@ const proyectoService = (() => {
         };
 
         proyectos.push(nuevoProyecto);
+
+        guardarEnLocalStorage();
     };
 
     const eliminarProyecto = (id) => {
@@ -140,6 +153,8 @@ const proyectoService = (() => {
 
         if (proyecto) {
             proyecto.disponible = false;
+
+            guardarEnLocalStorage();
         }
     };
 
